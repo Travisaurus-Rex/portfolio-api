@@ -9,11 +9,15 @@ export const events = new Hono<{ Bindings: Bindings }>();
 events.post("/", async (c) => {
   const body = await c.req.json();
   const id = crypto.randomUUID();
+  const country = c.req.header("cf-ipcountry") ?? "unknown";
+  const ip = c.req.header("cf-connecting-ip") ?? null;
 
   await c.env.ANALYTICS.put(
     id,
     JSON.stringify({
       ...body,
+      country,
+      ip,
       timestamp: Date.now(),
     })
   );
