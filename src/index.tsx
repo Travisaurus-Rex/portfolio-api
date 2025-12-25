@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { events } from "./routes/events";
+import { cors } from "hono/cors";
 
 const app = new Hono();
 
@@ -16,6 +17,15 @@ app.get("/debug/geo", (c) => {
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   });
 });
+
+app.use(
+  "/events/*",
+  cors({
+    origin: "*",
+    allowMethods: ["POST", "OPTIONS"],
+    allowHeaders: ["Content-Type"],
+  })
+);
 
 app.route("/events", events);
 
