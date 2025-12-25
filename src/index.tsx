@@ -13,6 +13,7 @@ app.get("/debug/geo", (c) => {
     ip: c.req.header("cf-connecting-ip"),
     colo: c.req.header("cf-ray")?.split("-")[1],
     userAgent: c.req.header("user-agent"),
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   });
 });
 
