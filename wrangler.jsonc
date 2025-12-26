@@ -10,9 +10,8 @@
 			"remote": true
 		},
 		{
-			"binding": "ANALYTICS_preview",
-			"preview_id": "d2cc1928023b4e349e58c7dc5cb76082",
-			"id": "7ad57a35787841fe90de5e38508db086"
+			"id": "7ad57a35787841fe90de5e38508db086",
+			"binding": "ANALYTICS_preview"
 		}
 	]
 	// "compatibility_flags": [

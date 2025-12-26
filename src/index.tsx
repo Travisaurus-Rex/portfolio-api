@@ -1,8 +1,18 @@
 import { Hono } from "hono";
-import { events } from "./routes/events";
 import { cors } from "hono/cors";
+import { events } from "./routes/events";
+import { contact } from "./routes/contact";
 
 const app = new Hono();
+
+app.use(
+  "/*",
+  cors({
+    origin: "*",
+    allowMethods: ["POST", "OPTIONS"],
+    allowHeaders: ["Content-Type"],
+  })
+);
 
 app.get("/", (c) => {
   return c.text("Hello Hono!");
@@ -18,15 +28,7 @@ app.get("/debug/geo", (c) => {
   });
 });
 
-app.use(
-  "/events/*",
-  cors({
-    origin: "*",
-    allowMethods: ["POST", "OPTIONS"],
-    allowHeaders: ["Content-Type"],
-  })
-);
-
 app.route("/events", events);
+app.route("/contact", contact);
 
 export default app;
