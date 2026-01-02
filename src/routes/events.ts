@@ -18,7 +18,7 @@ events.post("/", async (c) => {
       ...body,
       country,
       ip,
-      timestamp: Date.now(),
+      timestamp: new Date().toISOString(),
     })
   );
 
